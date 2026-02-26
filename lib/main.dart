@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'pages/home_page.dart';
-import 'providers/counter_provider.dart';
+import 'providers/counter_providers.dart';
+import 'views/home_page.dart';
 
 void main() {
   runApp(
@@ -19,10 +18,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'State Management Simple',
       debugShowCheckedModeBanner: false,
-      title: 'State Management Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: const HomePage(),

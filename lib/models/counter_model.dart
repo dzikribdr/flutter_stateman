@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CounterModel extends ChangeNotifier {
-  int counter = 0;
+class CounterModel {
+  int value;
 
-  void increment() {
-    counter++;
-    notifyListeners();
-  }
-
-  void decrement() {
-    counter--;
-    notifyListeners();
-  }
+  CounterModel({this.value = 0});
 }
