@@ -1,28 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/counter_model.dart';
+import '../providers/counter_provider.dart';
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CounterModel>(
-      builder: (context, counter, _) {
-        return Scaffold(
-          appBar: AppBar(title: const Text("Counter App")),
-          body: Center(
-            child: Text(
-              '${counter.counter}',
-              style: const TextStyle(fontSize: 40),
+    final counter = context.watch<CounterProvider>();
+
+    return Scaffold(
+      appBar: AppBar(title: const Text("State Management"), centerTitle: true),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Nilai Counter:", style: TextStyle(fontSize: 18)),
+            const SizedBox(height: 8),
+            Text(
+              counter.value.toString(),
+              style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
             ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => counter.increment(),
-            child: const Icon(Icons.add),
-          ),
-        );
-      },
+            const SizedBox(height: 30),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: counter.decrement,
+                  child: const Icon(Icons.remove),
+                ),
+                const SizedBox(width: 20),
+                ElevatedButton(
+                  onPressed: counter.increment,
+                  child: const Icon(Icons.add),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 16),
+
+            ElevatedButton(
+              onPressed: counter.reset,
+              child: const Text("Reset"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
