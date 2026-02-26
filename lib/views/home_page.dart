@@ -10,34 +10,39 @@ class HomePage extends StatelessWidget {
     final counter = context.watch<CounterProvider>();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('State Management'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text('State Management Simple'),
+        centerTitle: true,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('You have pushed the button this many times:'),
+            const Text('Nilai Counter:', style: TextStyle(fontSize: 18)),
             const SizedBox(height: 10),
             Text(
-              counter.counter.toString(),
-              style: Theme.of(context).textTheme.headlineMedium,
+              counter.value.toString(),
+              style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 30),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FloatingActionButton(
-                  heroTag: 'dec',
+                ElevatedButton(
                   onPressed: counter.decrement,
                   child: const Icon(Icons.remove),
                 ),
                 const SizedBox(width: 20),
-                FloatingActionButton(
-                  heroTag: 'inc',
+                ElevatedButton(
                   onPressed: counter.increment,
                   child: const Icon(Icons.add),
                 ),
               ],
+            ),
+            const SizedBox(height: 15),
+            ElevatedButton(
+              onPressed: counter.reset,
+              child: const Text("Reset"),
             ),
           ],
         ),
